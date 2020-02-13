@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.css" rel="stylesheet" />
+		<link href="../css/header.css" type="text/css" rel="stylesheet" />
+	</head>
+
+	<body style="background-color: #FFFFFF;">
+		<header class="mui-bar mui-bar-nav title">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: white;"></a>
+			<h1 class="mui-title title-color"><b>我的头像</b></h1>
+			<a id="more" class="mui-icon mui-icon-right-nav mui-pull-right" style="color: white;">...</a>
+		</header>
+		
+		<div id="sheet" class="mui-popover mui-popover-bottom mui-popover-action ">
+			<!-- 可选择菜单 -->
+			<ul class="mui-table-view">
+			  <li class="mui-table-view-cell">
+				<a id="takePthoto" href="#">拍照</a>
+			  </li>
+			  <li class="mui-table-view-cell">
+				<a id="pickPic" href="#">从相册选择图片</a>
+			  </li>
+			  <li class="mui-table-view-cell">
+				<a id="downloadPic" href="#">保存头像到手机</a>
+			  </li>
+			</ul>
+			<!-- 取消菜单 -->
+			<ul class="mui-table-view">
+			  <li class="mui-table-view-cell">
+				<a href="#sheet"><b>取消</b></a>
+			  </li>
+			</ul>
+		</div>
+		
+		<img src="" id="my-face-img" style="">
+		<span id="tips" style="color: #1973ba;" hidden="true">
+			点击右上方的图标完成头像设置
+		</span>
+	
+	</body>
+		<script src="../js/mui.js"></script>
+		<script type="text/javascript" src="../js/app.js"></script>
+		<script type="text/javascript" src="../js/myserver.js"></script>
+		<script type="text/javascript" src="../js/fastdfs.js"></script>
+		<script type="text/javascript">
+			mui.init({
+				swipeBack: true
+			});
+			mui.plusReady(function () {
+				var self = plus.webview.currentWebview();
+				var face_img_tag = document.getElementById('my-face-img');
+				var more = document.getElementById('more');
+				var tips = document.getElementById('tips');
+				
+				// 获取手机端可见屏幕的宽度
+				var imgWidth = document.body.clientWidth;
+				face_img_tag.width = imgWidth;
+				face_img_tag.height = imgWidth;
+				
+				refreshFace();
+				
+				// 更多选项绑定事件
+				more.addEventListener('tap', function(){
+					mui('#sheet').popover('toggle');
+				})
+				
+				// 更多选项的每个item绑定事件
+				var takePthoto = document.getElementById('takePthoto');
+				var pickPic = document.getElementById('pickPic');
+				var downloadPic = document.getElementById('downloadPic');
+				takePthoto.addEventListener('tap', function(){
+					mui.openWindow({url: '../plugin/v3.1.6/myface-uploader.html', id: 'myface-uploader.html', createNew: true, extras: {actionSheetIndex: 0}});
+					mui('#sheet').popover('toggle');
+				});
+				
+				pickPic.addEventListener('tap', function(){
+					mui.openWindow({url: '../plugin/v3.1.6/myface-uploader.html', id: 'myface-uploader.html', createNew: true, extras: {actionSheetIndex: 1}});
+					mui('#sheet').popover('toggle');
+				});
+				
+				downloadPic.addEventListener('tap', function(){
+					plus.nativeUI.showWaiting('下载中...');
+					fastdfs.downloadFace(face_img_tag.src, '头像');
+					mui('#sheet').popover('toggle');
+				});
+				
+				// 自定义refreshFace事件
+				window.addEventListener('refreshFace', function(){
+					refreshFace();
+				});
+			});
+			
+			function refreshFace(){
+				var user = app.getUserInfo();
+				var face_img_tag = document.getElementById('my-face-img');
+				if (app.isNotNull(user.faceImg)){  // 头像不为空
+					console.log(user.faceImgBig);
+					face_img_tag.src = fastdfs.IMG_SERVER_ADDR_PORT + user.faceImgBig;
+				} else {
+					face_img_tag.src = "../image/NO_FACE_ERROR.png";
+					face_img_tag.style = "padding-top: 80%; padding-left: 10%; width: 20%; height: 20%;";
+					tips.hidden = false;
+				}
+			}
+		</script>
+</html>

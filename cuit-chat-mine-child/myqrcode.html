@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.css" rel="stylesheet" />
+		<link href="../css/header.css" type="text/css" rel="stylesheet" />
+		<style>
+					
+			#mui-content {
+				width: 100%;
+				position: absolute;
+				top: 44px;
+				bottom: 0px;
+				background: #2e3132;
+			}
+			
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav title">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: white;"></a>
+			<h1 class="mui-title title-color"><b>二维码</b></h1>
+			<a id="download" class="mui-icon mui-icon-right-nav mui-pull-right" style="font-size: 25px;color: white;">
+				<img src="../image/download.png" width="20px" >
+			</a>
+		</header>
+		
+		<div id="mui-content" style="padding: 80px 30px 0px 30px;">
+			<div style="background-color: white;padding-top: 20px;padding-left: 20px;">
+				<img id="img_myface" src="" width="60px" style="border-radius: 8%;float: left;"/>
+				<label id="nicknamelab" style="float: left;margin-left: 10px;margin-top: 10px;">我的二维码</label>
+				<br />
+				<br />
+				<label id="userId" style="float: left;margin-left: 10px; font-size: 15px; color: gray;">四川 成都</label>
+			</div>
+			<div style="background-color: white;text-align: center;">
+				<img id="img_my_qrcode" src="" />
+			</div>
+			<div style="background-color: white;text-align: center;">
+				<p style="padding-bottom: 10px;font-size: 12px;">扫一扫上面的二维码图案，加我为好友~</p>
+			</div>
+		</div>
+		
+	</body>
+		<script src="../js/mui.js"></script>
+		<script type="text/javascript" src="../js/app.js"></script>
+		<script type="text/javascript" src="../js/myserver.js"></script>
+		<script type="text/javascript" src="../js/fastdfs.js"></script>
+		<script type="text/javascript">
+			mui.init({
+				swipeBack: true
+			});
+			mui.plusReady(function () {
+				var user = app.getUserInfo();
+				var qrcode = user.qrcode;
+				var nickname = user.nickname;
+				var faceImg = user.faceImg;
+				
+				// 获取QRCode照片
+				var img_my_qrcode = document.getElementById('img_my_qrcode');
+				img_my_qrcode.src = fastdfs.IMG_SERVER_ADDR_PORT + qrcode;
+				
+				var img_myface = document.getElementById('img_myface');
+				img_myface.src = fastdfs.IMG_SERVER_ADDR_PORT + faceImg;
+				
+				var lab_nick_name = document.getElementById('nicknamelab');
+				lab_nick_name.innerHTML = nickname;
+				
+				// var user_id_lab = document.getElementById('userId');
+				// user_id_lab.innerHTML = "ID：" + user.username;
+				
+				// 获取手机端可见屏幕宽度高度
+				var imgWid = document.body.clientWidth - 60;
+				img_my_qrcode.width = imgWid;
+				img_my_qrcode.height = imgWid;
+				
+				// 二维码保存
+				var download = document.getElementById('download');
+				download.addEventListener('tap', function(){
+					plus.nativeUI.showWaiting('下载中...');
+					fastdfs.downloadFace(fastdfs.IMG_SERVER_ADDR_PORT + qrcode, '二维码');
+				})
+			});
+		</script>
+</html>

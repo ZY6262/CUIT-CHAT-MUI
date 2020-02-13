@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.css" rel="stylesheet" />
+		<link href="../css/header.css" type="text/css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav title">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: white;"></a>
+			<a id="search" class="mui-icon mui-icon-right-nav mui-pull-right" style="font-size: 25px;color: white;">
+				<img src="../image/search.png" width="20px" >
+			</a>
+		</header>
+		<br />
+		<div class="mui-content">
+			<div style="padding-left: 5%;">
+				<input id="input" type="search" placeholder="用户账号" style="width: 80%;">
+				<button id="cancel" type="button" class="mui-btn mui-btn-blue mui-btn-outlined" style="border: none; font-size: 17px;">取消</button>
+			</div>
+		</div>
+	</body>
+	
+		<script src="../js/mui.js"></script>
+		<script type="text/javascript" src="../js/app.js"></script>
+		<script type="text/javascript" src="../js/myserver.js"></script>
+		<script type="text/javascript" src="../js/fastdfs.js"></script>
+		<script type="text/javascript">
+			mui.init({
+				swipeBack: true
+			});
+			
+			mui.plusReady(function () {
+				
+				var search = document.getElementById('search');
+				var cancel = document.getElementById('cancel');
+				var input = document.getElementById('input');
+				
+				search.addEventListener('tap', function(){
+					myserver.searchByUsername(input.value);
+				});
+				
+				cancel.addEventListener('tap', function(){
+					input.value = null;
+				})
+			});
+		</script>
+</html>

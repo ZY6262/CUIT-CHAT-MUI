@@ -1,0 +1,12 @@
+.title{
+	background-color: #1973ba;
+}
+
+.title-color{
+	color: white;
+}
+
+/*.mui-tab-item.mui-active中间不能有空格,他们挂载到了同一级*/
+.mui-bar-tab .mui-tab-item.mui-active{  
+	color: #1973ba;
+}
