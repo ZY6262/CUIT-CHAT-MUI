@@ -1,0 +1,21 @@
+
+.page.data-v-c07c6ca4 {
+		height: 100Vh;
+		width: 100vw;
+}
+.page.show.data-v-c07c6ca4 {
+		overflow: hidden;
+}
+.switch-sex.data-v-c07c6ca4::after {
+		content: "\E716";
+}
+.switch-sex.data-v-c07c6ca4::before {
+		content: "\E7A9";
+}
+.switch-music.data-v-c07c6ca4::after {
+		content: "\E66A";
+}
+.switch-music.data-v-c07c6ca4::before {
+		content: "\E6DB";
+}
+

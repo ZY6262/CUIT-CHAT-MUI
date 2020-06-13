@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "form-chat": "/components/form-unit/form-chat"
+  },
+  "component": true
+}

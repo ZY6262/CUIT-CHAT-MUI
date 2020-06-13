@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "cu-custom": "/colorui/components/cu-custom",
+    "form-unit": "/components/form-unit/form-unit",
+    "w-input": "/components/watch-login/watch-input"
+  },
+  "component": true
+}

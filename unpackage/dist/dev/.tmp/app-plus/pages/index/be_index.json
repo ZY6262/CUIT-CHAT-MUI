@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "mine": "/pages/mine/home",
+    "discover": "/pages/discover/home",
+    "friends": "/pages/friends/home",
+    "chat": "/pages/chat/home"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "cu-custom": "/colorui/components/cu-custom",
+    "form-unit": "/components/form-unit/form-unit"
+  },
+  "component": true
+}
