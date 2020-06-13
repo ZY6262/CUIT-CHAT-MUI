@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "w-input": "/components/watch-login/watch-input"
+  },
+  "component": true
+}

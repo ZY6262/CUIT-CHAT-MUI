@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "cu-custom": "/colorui/components/cu-custom",
+    "image-cropper": "/components/invinbg-image-cropper/invinbg-image-cropper"
+  }
+}

@@ -1,0 +1,2 @@
+setCssToHead([".",[1],"page { height: 100Vh; width: 100vw; }\n.",[1],"page.",[1],"show { overflow: hidden; }\n",],undefined,{path:"./pages/account/friends/requestlist.wxss"})();
+document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/account/friends/requestlist.wxml') } }));

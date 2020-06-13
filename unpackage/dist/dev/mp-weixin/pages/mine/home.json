@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "img-modal": "/components/modal/withimgmodal"
+  },
+  "component": true
+}

@@ -1,0 +1,44 @@
+{
+  "pages": [
+    "pages/index/be_index",
+    "pages/account/login",
+    "pages/account/register",
+    "pages/account/forget",
+    "pages/index/index",
+    "pages/account/settings/system",
+    "pages/account/settings/about",
+    "pages/account/settings/feedback",
+    "pages/account/settings/person",
+    "pages/img/detail",
+    "pages/img/betterdetails",
+    "pages/account/settings/avatarcropper",
+    "pages/account/friends/frienddetails",
+    "pages/account/friends/requestlist",
+    "pages/account/chat/template"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#0081ff",
+    "navigationBarTitleText": "ColorUi for UniApp",
+    "navigationStyle": "custom",
+    "navigationBarTextStyle": "white"
+  },
+  "networkTimeout": {
+    "request": 20000
+  },
+  "nvueCompiler": "uni-app",
+  "renderer": "auto",
+  "splashscreen": {
+    "alwaysShowBeforeRender": true,
+    "autoclose": false
+  },
+  "appname": "beautiful",
+  "compilerVersion": "2.6.5",
+  "usingComponents": {
+    "cu-custom": "/colorui/components/cu-custom",
+    "form-unit": "/components/form-unit/form-unit",
+    "mine": "/pages/mine/home",
+    "discover": "/pages/discover/home",
+    "friends": "/pages/friends/home",
+    "chat": "/pages/chat/home"
+  }
+}
